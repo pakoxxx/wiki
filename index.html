@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Per Wiki 💜 - Un Messaggio Speciale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Stelline animate background -->
+    <div class="stars-container" id="starsContainer"></div>
+
+    <!-- Scena 1: Busta animata -->
+    <div class="scene active" id="scene1">
+      <div class="envelope-container">
+        <div class="envelope-pixel" id="envelopePixel">
+          <div class="envelope-top"></div>
+          <div class="envelope-body"></div>
+          <div class="envelope-flap"></div>
+          <div class="envelope-heart">
+            <img src="assets/heart-purple.png" class="emoji-img" alt="cuore" />
+          </div>
+        </div>
+        <p class="pixel-text envelope-label">
+          Clicca la busta!
+          <img
+            src="assets/sparkle.png"
+            class="emoji-img-small"
+            alt="stellina"
+          />
+        </p>
+      </div>
+    </div>
+
+    <!-- Scena 2: Introduzione -->
+    <div class="scene" id="scene2">
+      <div class="content-container">
+        <h1 class="pixel-title">
+          Ciao Wiki!
+          <img src="assets/heart-purple.png" class="emoji-img" alt="cuore" />
+        </h1>
+        <div class="typewriter-container">
+          <p class="typewriter-text" id="intro-text"></p>
+        </div>
+        <button class="pixel-button hidden" id="btnStart">
+          Iniziamo
+          <img
+            src="assets/sparkle.png"
+            class="emoji-img-small"
+            alt="stellina"
+          />
+        </button>
+      </div>
+    </div>
+
+    <!-- Scena 3: Gioco cuori -->
+    <div class="scene" id="scene3">
+      <div class="content-container">
+        <h2 class="pixel-title">
+          Riempi i Cuori!
+          <img src="assets/heart-purple.png" class="emoji-img" alt="cuore" />
+        </h2>
+        <p class="pixel-subtitle">Clicca ogni cuore per riempirlo d'amore</p>
+        <div class="hearts-game" id="heartsGame">
+          <div class="heart-pixel" data-filled="false">
+            <div class="heart-empty">
+              <img src="assets/heart-empty.png" alt="Empty Heart" />
+            </div>
+            <div class="heart-full">
+              <img src="assets/heart-full.png" alt="Full Heart" />
+            </div>
+          </div>
+          <div class="heart-pixel" data-filled="false">
+            <div class="heart-empty">
+              <img src="assets/heart-empty.png" alt="Empty Heart" />
+            </div>
+            <div class="heart-full">
+              <img src="assets/heart-full.png" alt="Full Heart" />
+            </div>
+          </div>
+          <div class="heart-pixel" data-filled="false">
+            <div class="heart-empty">
+              <img src="assets/heart-empty.png" alt="Empty Heart" />
+            </div>
+            <div class="heart-full">
+              <img src="assets/heart-full.png" alt="Full Heart" />
+            </div>
+          </div>
+          <div class="heart-pixel" data-filled="false">
+            <div class="heart-empty">
+              <img src="assets/heart-empty.png" alt="Empty Heart" />
+            </div>
+            <div class="heart-full">
+              <img src="assets/heart-full.png" alt="Full Heart" />
+            </div>
+          </div>
+          <div class="heart-pixel" data-filled="false">
+            <div class="heart-empty">
+              <img src="assets/heart-empty.png" alt="Empty Heart" />
+            </div>
+            <div class="heart-full">
+              <img src="assets/heart-full.png" alt="Full Heart" />
+            </div>
+          </div>
+        </div>
+        <div class="particles-container" id="particlesContainer"></div>
+      </div>
+    </div>
+
+    <!-- Scena 4: Gattino interattivo -->
+    <div class="scene" id="scene4">
+      <div class="content-container">
+        <h2 class="pixel-title">
+          Un Amico Speciale!
+          <img src="assets/heart-purple.png" class="emoji-img" alt="cuore" />
+        </h2>
+        <p class="pixel-subtitle">Questo gattino ha un messaggio per te...</p>
+        <div class="cat-container">
+          <div class="cat-pixel" id="catPixel">
+            <img src="assets/cat.png" alt="Pixel Cat" class="cat-image" />
+          </div>
+          <div class="meow-popup hidden" id="meowPopup">
+            Meow!
+            <img
+              src="assets/cat-emoji.png"
+              class="emoji-img-small"
+              alt="gatto"
+            /><img
+              src="assets/heart-purple.png"
+              class="emoji-img-small"
+              alt="cuore"
+            />
+          </div>
+        </div>
+        <button class="pixel-button" id="btnContinue4">Avanti</button>
+      </div>
+    </div>
+
+    <!-- Scena 5: Branching - Scelta -->
+    <div class="scene" id="scene5">
+      <div class="content-container">
+        <h2 class="pixel-title">
+          I Nostri Sogni
+          <img src="assets/heart-purple.png" class="emoji-img" alt="cuore" />
+        </h2>
+        <p class="pixel-subtitle">Cosa ti piacerebbe fare prima?</p>
+        <div class="choices-container">
+          <button class="choice-button" id="choiceVacation">
+            <span class="choice-icon">
+              <img src="assets/airplane.png" alt="aereo" />
+            </span>
+            <span class="choice-text">Prima Vacanza Insieme</span>
+          </button>
+          <button class="choice-button" id="choiceLiving">
+            <span class="choice-icon">
+              <img src="assets/house.png" alt="casa" />
+            </span>
+            <span class="choice-text">Vivere Insieme</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scena 6: Risultato scelta (dinamico) -->
+    <div class="scene" id="scene6">
+      <div class="content-container">
+        <h2 class="pixel-title" id="scene6Title">
+          Il Nostro Futuro
+          <img src="assets/heart-purple.png" class="emoji-img" alt="cuore" />
+        </h2>
+        <div class="typewriter-container">
+          <p class="typewriter-text" id="scene6-text"></p>
+        </div>
+        <button class="pixel-button hidden" id="btnContinue6">Continua</button>
+      </div>
+    </div>
+
+    <!-- Scena 7: Momento romantico -->
+    <div class="scene" id="scene7">
+      <div class="content-container">
+        <h2 class="pixel-title romantic-quote">
+          "Con te, ogni momento<br />diventa speciale"
+        </h2>
+        <div class="floating-hearts">
+          <img src="assets/heart-full.png" class="floating-heart" alt="cuore" />
+          <img src="assets/heart-full.png" class="floating-heart" alt="cuore" />
+          <img src="assets/heart-full.png" class="floating-heart" alt="cuore" />
+        </div>
+        <button class="pixel-button" id="btnContinue7">
+          Avanti
+          <img
+            src="assets/heart-purple.png"
+            class="emoji-img-small"
+            alt="cuore"
+          />
+        </button>
+      </div>
+    </div>
+
+    <!-- Scena 8: Quello che amo di te -->
+    <div class="scene" id="scene8">
+      <div class="content-container">
+        <h2 class="pixel-title">
+          Quello Che Amo di Te
+          <img src="assets/heart-purple.png" class="emoji-img" alt="cuore" />
+        </h2>
+        <div class="typewriter-container">
+          <p class="typewriter-text" id="scene8-text"></p>
+        </div>
+        <button class="pixel-button" id="btnContinue8">Continua</button>
+      </div>
+    </div>
+
+    <!-- Scena 9: Promessa -->
+    <div class="scene" id="scene9">
+      <div class="content-container">
+        <h2 class="pixel-title">
+          La Mia Promessa
+          <img src="assets/heart-purple.png" class="emoji-img" alt="cuore" />
+        </h2>
+        <div class="typewriter-container">
+          <p class="typewriter-text" id="scene9-text"></p>
+        </div>
+        <div class="promise-box">
+          <img src="assets/heart-full.png" class="promise-icon" alt="cuore" />
+          <p class="promise-text-small">Per Sempre Insieme</p>
+        </div>
+        <button class="pixel-button" id="btnContinue9">Lettera Finale</button>
+      </div>
+    </div>
+
+    <!-- Scena 10: Lettera finale - GRID REWRITE -->
+    <div class="scene" id="scene10">
+      <div class="content-container final-scene">
+        <div class="parchment-container">
+          <div class="parchment-header">
+            <h2 class="pixel-title final-title">
+              Per Te, Wiki
+              <img
+                src="assets/heart-purple.png"
+                class="emoji-img"
+                alt="cuore"
+              />
+            </h2>
+          </div>
+          
+          <!-- NUOVA STRUTTURA GRID -->
+          <div class="avatars-grid">
+            <div class="grid-image">
+              <img src="assets/avatar-pako.png" alt="Pako" class="avatar-img" id="pakoAvatar" />
+            </div>
+            <div class="grid-image">
+              <img src="assets/heart-full.png" alt="cuore" class="heart-between" />
+            </div>
+            <div class="grid-image">
+              <img src="assets/avatar-wiki.png" alt="Wiki" class="avatar-img" id="wikiAvatar" />
+            </div>
+            
+            <div class="grid-label">Pako</div>
+            <div class="grid-label"></div>
+            <div class="grid-label">Wiki</div>
+          </div>
+          
+          <div class="letter-content">
+            <div class="typewriter-container letter-text">
+              <p class="typewriter-text" id="scene10-text"></p>
+            </div>
+          </div>
+          <div class="bouquet-container hidden" id="bouquetContainer">
+            <img src="assets/bouquet.png" alt="Bouquet" class="bouquet-img" />
+          </div>
+          <div class="final-signature hidden" id="finalSignature">
+            <p class="signature-text">Con tutto il mio cuore,</p>
+            <p class="signature-name">
+              Il Tuo Pako
+              <img
+                src="assets/heart-purple.png"
+                class="emoji-img-small"
+                alt="cuore"
+              />
+            </p>
+          </div>
+        </div>
+        <button class="pixel-button restart-button hidden" id="btnRestart">
+          Rileggi
+          <img src="assets/refresh.png" class="emoji-img-small" alt="rileggi" />
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

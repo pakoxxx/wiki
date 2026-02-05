@@ -1,0 +1,953 @@
+/* ============================================
+   San Valentino Pixel Art - CSS COMPLETO RIVISTO
+   Con Flexbox per centratura perfetta
+   ============================================ */
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Press Start 2P", cursive;
+  background: linear-gradient(135deg, #000000 0%, #290e40 100%);
+  color: #ffffff;
+  position: relative;
+}
+
+/* ============================================
+   STARS BACKGROUND
+   ============================================ */
+
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle 3s infinite;
+}
+
+.star.purple {
+  background: #d4a5ff;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+/* ============================================
+   SCENE SYSTEM
+   ============================================ */
+
+.scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+  z-index: 1;
+  padding: 20px;
+}
+
+.scene.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Content container with max width for readability */
+.content-container {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  text-align: center;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+.pixel-title {
+  font-size: clamp(18px, 4vw, 32px);
+  color: #d4a5ff;
+  text-shadow: 3px 3px 0px #ff1493, 5px 5px 10px rgba(255, 20, 147, 0.5);
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pixel-subtitle {
+  font-size: clamp(10px, 2.5vw, 16px);
+  color: #d4a5ff;
+  line-height: 1.6;
+}
+
+.pixel-text {
+  font-size: clamp(12px, 3vw, 18px);
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+/* ============================================
+   EMOJI IMAGES
+   ============================================ */
+
+.emoji-img {
+  width: clamp(32px, 6vw, 64px);
+  height: clamp(32px, 6vw, 64px);
+  display: inline-block;
+  vertical-align: middle;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.emoji-img-small {
+  width: clamp(16px, 4vw, 32px);
+  height: clamp(16px, 4vw, 32px);
+  display: inline-block;
+  vertical-align: middle;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.pixel-button {
+  font-family: "Press Start 2P", cursive;
+  font-size: clamp(12px, 2.5vw, 18px);
+  background: linear-gradient(180deg, #ff1493 0%, #c71585 100%);
+  color: #ffffff;
+  border: 4px solid #ffffff;
+  padding: 15px 30px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 6px 0 #8b0066, 0 8px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pixel-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #8b0066, 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.pixel-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 #8b0066, 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.pixel-button.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+/* ============================================
+   SCENE 1: ENVELOPE
+   ============================================ */
+
+.envelope-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.envelope-pixel {
+  position: relative;
+  width: clamp(200px, 50vw, 300px);
+  height: clamp(140px, 35vw, 210px);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.envelope-pixel:hover {
+  transform: scale(1.05) translateY(-5px);
+}
+
+/* Envelope parts usando dimensioni relative */
+.envelope-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: #d4a5ff;
+  border: 4px solid #ffffff;
+}
+
+.envelope-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #e6ccff;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  border: 4px solid #ffffff;
+  border-bottom: none;
+  z-index: 2;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: calc(50% - 4px);
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #9d4edd;
+  clip-path: polygon(0 0, 50% 60%, 100% 0);
+  border: 4px solid #ffffff;
+  border-top: none;
+  z-index: 1;
+  transform-origin: top center;
+  animation: flapOpen 2s ease-in-out infinite;
+}
+
+.envelope-heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+.envelope-heart img {
+  width: clamp(40px, 10vw, 64px);
+  height: clamp(40px, 10vw, 64px);
+  image-rendering: pixelated;
+}
+
+@keyframes flapOpen {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.9);
+  }
+}
+
+@keyframes heartBeat {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.envelope-label {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ============================================
+   SCENE 2: TYPEWRITER
+   ============================================ */
+
+.typewriter-container {
+  width: 100%;
+  max-width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 3px solid #d4a5ff;
+  border-radius: 10px;
+  padding: 25px;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.typewriter-text {
+  font-size: clamp(11px, 2.5vw, 16px);
+  color: #ffffff;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: left;
+  width: 100%;
+}
+
+/* ============================================
+   SCENE 3: HEARTS GAME - FLEXBOX CENTERED
+   ============================================ */
+
+.hearts-game {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(15px, 4vw, 30px);
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.heart-pixel {
+  position: relative;
+  width: clamp(80px, 18vw, 128px);
+  height: clamp(80px, 18vw, 128px);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.heart-pixel:hover {
+  transform: scale(1.1);
+}
+
+.heart-empty,
+.heart-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.heart-empty img,
+.heart-full img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.heart-pixel[data-filled="false"] .heart-full {
+  opacity: 0;
+}
+
+.heart-pixel[data-filled="true"] .heart-empty {
+  opacity: 0;
+}
+
+.heart-pixel[data-filled="true"] .heart-full {
+  opacity: 1;
+  animation: heartPop 0.4s ease;
+}
+
+@keyframes heartPop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Particles container */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.particle {
+  position: absolute;
+  animation: particleFly 1s ease-out forwards;
+}
+
+@keyframes particleFly {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0);
+  }
+}
+
+/* ============================================
+   SCENE 4: CAT
+   ============================================ */
+
+.cat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+}
+
+.cat-pixel {
+  width: clamp(150px, 40vw, 256px);
+  height: clamp(150px, 40vw, 256px);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cat-pixel:hover {
+  transform: scale(1.05);
+}
+
+.cat-pixel.clicked {
+  animation: catJump 0.6s ease;
+}
+
+.cat-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+@keyframes catJump {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+  }
+}
+
+.meow-popup {
+  font-size: clamp(14px, 3vw, 20px);
+  background: #ff1493;
+  color: #ffffff;
+  padding: 15px 25px;
+  border: 3px solid #ffd700;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: scale(0.5) translateY(-20px);
+  transition: all 0.3s ease;
+}
+
+.meow-popup.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* ============================================
+   SCENE 5: CHOICES
+   ============================================ */
+
+.choices-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.choice-button {
+  font-family: "Press Start 2P", cursive;
+  font-size: clamp(11px, 2.5vw, 16px);
+  background: linear-gradient(180deg, #9d4edd 0%, #7b2cbf 100%);
+  color: #ffffff;
+  border: 4px solid #ffffff;
+  padding: 20px 30px;
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  box-shadow: 0 6px 0 #5a189a, 0 8px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.choice-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 #5a189a, 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.choice-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 #5a189a, 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.choice-icon {
+  width: clamp(60px, 15vw, 96px);
+  height: clamp(60px, 15vw, 96px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.choice-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.choice-text {
+  text-align: left;
+  line-height: 1.4;
+}
+
+/* ============================================
+   SCENE 7: FLOATING HEARTS
+   ============================================ */
+
+.romantic-quote {
+  font-size: clamp(16px, 3.5vw, 28px);
+  line-height: 1.6;
+}
+
+.floating-hearts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 30px 0;
+}
+
+.floating-heart {
+  width: clamp(50px, 12vw, 80px);
+  height: clamp(50px, 12vw, 80px);
+  image-rendering: pixelated;
+  animation: floatHeart 3s ease-in-out infinite;
+}
+
+.floating-heart:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.floating-heart:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.floating-heart:nth-child(3) {
+  animation-delay: 2s;
+}
+
+@keyframes floatHeart {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* ============================================
+   SCENE 9: PROMISE BOX
+   ============================================ */
+
+.promise-box {
+  background: rgba(255, 20, 147, 0.2);
+  border: 3px solid #ff1493;
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.promise-icon {
+  width: clamp(60px, 15vw, 100px);
+  height: clamp(60px, 15vw, 100px);
+  image-rendering: pixelated;
+  animation: pulsate 2s ease-in-out infinite;
+}
+
+@keyframes pulsate {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.promise-text-small {
+  font-size: clamp(10px, 2.5vw, 16px);
+  color: #d4a5ff;
+}
+
+/* ============================================
+   SCENE 10: FINAL LETTER - SCROLLABLE FIX
+   ============================================ */
+
+.final-scene {
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 20px;
+  -webkit-overflow-scrolling: touch;
+  display: block;
+}
+
+.parchment-container {
+  background: rgba(157, 78, 221, 0.15);
+  border: 4px solid #9d4edd;
+  border-radius: 15px;
+  padding: 20px 15px;
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.parchment-container > * {
+  width: 100%;
+  max-width: 100%;
+}
+
+.parchment-header {
+  width: 100%;
+  text-align: center;
+}
+
+.final-title {
+  font-size: clamp(16px, 4vw, 28px);
+}
+
+/* AVATARS GRID - FLEXBOX CENTERED */
+.avatars-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 10px 15px;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  max-width: 500px;
+  padding: 15px 0;
+}
+
+.grid-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-img {
+  width: clamp(80px, 20vw, 150px);
+  height: clamp(80px, 20vw, 150px);
+  border-radius: 50%;
+  border: 3px solid #ff1493;
+  object-fit: cover;
+  image-rendering: auto;
+  box-shadow: 0 5px 15px rgba(255, 20, 147, 0.5);
+}
+
+.heart-between {
+  width: clamp(40px, 12vw, 80px);
+  height: clamp(40px, 12vw, 80px);
+  image-rendering: pixelated;
+  animation: pulsate 2s ease-in-out infinite;
+}
+
+.grid-label {
+  font-size: clamp(10px, 2.5vw, 16px);
+  color: #d4a5ff;
+  text-align: center;
+}
+
+.letter-content {
+  width: 100%;
+  max-width: 100%;
+}
+
+.letter-text {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 10px;
+  min-height: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.letter-text .typewriter-text {
+  font-size: clamp(9px, 2vw, 13px);
+  line-height: 1.8;
+  color: #ffffff;
+  text-align: left;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.bouquet-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.bouquet-container.hidden {
+  opacity: 0;
+}
+
+.bouquet-img {
+  width: clamp(120px, 30vw, 200px);
+  height: clamp(120px, 30vw, 200px);
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.final-signature {
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.final-signature.hidden {
+  opacity: 0;
+}
+
+.signature-text {
+  font-size: clamp(10px, 2.2vw, 14px);
+  color: #d4a5ff;
+  margin-bottom: 8px;
+}
+
+.signature-name {
+  font-size: clamp(12px, 2.8vw, 18px);
+  color: #d4a5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.restart-button {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .content-container {
+    gap: 20px;
+  }
+
+  .typewriter-container {
+    padding: 15px;
+    min-height: 120px;
+  }
+
+  .hearts-game {
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .choices-container {
+    gap: 15px;
+  }
+
+  .choice-button {
+    padding: 15px 20px;
+    gap: 15px;
+  }
+
+  .parchment-container {
+    padding: 20px 15px;
+    gap: 20px;
+  }
+
+  .avatars-grid {
+    gap: 10px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 10px;
+  }
+
+  .scene {
+    padding: 10px;
+  }
+
+  .content-container {
+    gap: 15px;
+  }
+
+  .pixel-button {
+    padding: 12px 20px;
+  }
+
+  .hearts-game {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .parchment-container {
+    padding: 15px 10px;
+    gap: 15px;
+  }
+
+  .avatars-grid {
+    gap: 8px 10px;
+    padding: 10px 0;
+  }
+
+  .letter-text {
+    padding: 12px;
+  }
+
+  .letter-text .typewriter-text {
+    font-size: clamp(8px, 2vw, 12px);
+    line-height: 1.6;
+  }
+
+  .final-scene {
+    padding: 15px 10px;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR - TEMA VIOLA
+   ============================================ */
+
+/* Scrollbar per WebKit (Chrome, Safari, Edge) */
+.final-scene::-webkit-scrollbar {
+  width: 12px;
+}
+
+.final-scene::-webkit-scrollbar-track {
+  background: #000000;
+  border-left: 2px solid #290e40;
+}
+
+.final-scene::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #9d4edd 0%, #7b2cbf 100%);
+  border-radius: 6px;
+  border: 2px solid #290e40;
+}
+
+.final-scene::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #b57eec 0%, #9d4edd 100%);
+}
+
+.final-scene::-webkit-scrollbar-thumb:active {
+  background: #d4a5ff;
+}
+
+/* Scrollbar per Firefox */
+.final-scene {
+  scrollbar-width: thin;
+  scrollbar-color: #9d4edd #000000;
+}
+
+/* Scrollbar mobile (iOS/Android Chrome) - supporto limitato ma migliora l'aspetto */
+@supports (-webkit-touch-callout: none) {
+  .final-scene::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .final-scene::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+  }
+}
