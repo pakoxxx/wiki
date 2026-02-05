@@ -15,6 +15,8 @@ let currentScene = 1;
 let userChoice = null;
 let heartsFilled = 0;
 let audioContext = null;
+let meowAudio = null;
+let popAudio = null;
 
 // Testi per le scene
 const sceneTexts = {
@@ -33,9 +35,9 @@ const sceneTexts = {
   scene9:
     "Prometto di essere sempre al tuo fianco, nei momenti belli e in quelli difficili. Prometto di amarti oggi, domani e per sempre! Perchè con te, ho trovato la mia metà!",
 
-  finalLetter: `Mia Wiki,\n
-Mentre scrivo questa lettera, il mio cuore è pieno di amore e gratitudine. \nSei la persona più speciale che abbia mai incontrato, e ogni giorno che passo con te al mio fianco diventa migliore.
-Ricordo il primo momento in cui ti ho vista: i tuoi occhi brillavano, e il tuo sorriso ha illuminato la mia vita da quel giorno.
+  finalLetter: `Mia dolcissima Wiki,\n
+Mentre scrivo questa lettera, il mio cuore è pieno di gioia e gratitudine. \nSei la persona più speciale che abbia mai incontrato, e ogni giorno con te è un regalo prezioso.
+Ricordo il primo momento in cui ti ho vista: i tuoi occhi brillavano di una luce speciale, e il tuo sorriso ha illuminato la mia vita da quel giorno.
 Mi fai ridere quando sono triste, mi dai forza quando sono debole, mi ispiri a essere una persona migliore ogni giorno.
 Ogni tua piccola abitudine mi fa innamorare di più: il modo in cui mi guardi, come crolli sul mio braccio mentre guido, la tua passione per la danza che ti fa brillare gli occhi quando ne parli o quando ti vedo ballare... Sei perfetta!
 Promettiamoci di continuare a crescere insieme, di affrontare ogni sfida mano nella mano.
@@ -100,28 +102,20 @@ function initStars() {
 function initAudio() {
   audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
+  // Create audio element for meow sound
+  meowAudio = new Audio("assets/meow.mp3");
+  meowAudio.preload = "auto";
+
+  // Create audio element for pop/heartbeat sound
+  popAudio = new Audio("assets/pop.mp3");
+  popAudio.preload = "auto";
+
   window.playPop = function () {
     try {
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-
-      oscillator.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-
-      oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-      oscillator.frequency.exponentialRampToValueAtTime(
-        400,
-        audioContext.currentTime + 0.1,
-      );
-
-      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-      gainNode.gain.exponentialRampToValueAtTime(
-        0.01,
-        audioContext.currentTime + 0.1,
-      );
-
-      oscillator.start(audioContext.currentTime);
-      oscillator.stop(audioContext.currentTime + 0.1);
+      popAudio.currentTime = 0;
+      popAudio.play().catch((error) => {
+        console.log("Audio play error:", error);
+      });
     } catch (e) {
       console.log("Audio error:", e);
     }
@@ -129,30 +123,10 @@ function initAudio() {
 
   window.playMeow = function () {
     try {
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-
-      oscillator.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-
-      oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
-      oscillator.frequency.exponentialRampToValueAtTime(
-        400,
-        audioContext.currentTime + 0.15,
-      );
-      oscillator.frequency.exponentialRampToValueAtTime(
-        500,
-        audioContext.currentTime + 0.3,
-      );
-
-      gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-      gainNode.gain.exponentialRampToValueAtTime(
-        0.01,
-        audioContext.currentTime + 0.3,
-      );
-
-      oscillator.start(audioContext.currentTime);
-      oscillator.stop(audioContext.currentTime + 0.3);
+      meowAudio.currentTime = 0;
+      meowAudio.play().catch((error) => {
+        console.log("Audio play error:", error);
+      });
     } catch (e) {
       console.log("Audio error:", e);
     }
@@ -341,7 +315,7 @@ function createParticles(x, y) {
     particle.className = "particle";
     particle.src = "assets/sparkle-blue.png";
     particle.alt = "sparkle";
-    
+
     particle.style.position = "absolute";
     particle.style.left = x + "px";
     particle.style.top = y + "px";
